@@ -24,6 +24,10 @@
             android:name=".FlagThumbnailDisplayActivity"
             android:label="@string/title_activity_flag_thumbnail_display" >
         </activity>
+        <activity
+            android:name=".FlagActivity"
+            android:label="@string/title_activity_flag" >
+        </activity>
     </application>
 
 </manifest>

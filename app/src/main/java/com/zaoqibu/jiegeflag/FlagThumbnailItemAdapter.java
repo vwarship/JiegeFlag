@@ -55,7 +55,7 @@ public class FlagThumbnailItemAdapter extends BaseAdapter {
         }
 
         ImageView ivFlagThumbnail = (ImageView)view.findViewById(R.id.ivFlagThumbnail);
-        Bitmap bitmap = BitmapUtil.decodeSampledBitmapFromResource(context.getResources(), continent.getCountryByIndex(position).getFlagResId(), 100, 100);
+        Bitmap bitmap = BitmapUtil.decodeSampledBitmapFromResource(context.getResources(), continent.getCountryByIndex(position).getFlagResId(), 150, 150);
         ivFlagThumbnail.setImageBitmap(bitmap);
 
 //        TextView tvFlagName = (TextView)view.findViewById(R.id.tvFlagName);

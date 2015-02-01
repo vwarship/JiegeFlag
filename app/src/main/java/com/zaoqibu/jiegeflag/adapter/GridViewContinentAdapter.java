@@ -1,7 +1,6 @@
 package com.zaoqibu.jiegeflag.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import android.widget.ImageView;
 import com.zaoqibu.jiegeflag.R;
 import com.zaoqibu.jiegeflag.domain.Continent;
 import com.zaoqibu.jiegeflag.domain.World;
-import com.zaoqibu.jiegeflag.util.BitmapUtil;
 
 public class GridViewContinentAdapter extends BaseAdapter
 {
@@ -60,10 +58,9 @@ public class GridViewContinentAdapter extends BaseAdapter
         }
 
         Continent continent = world.getContinentByIndex(position);
-        Bitmap bitmap = BitmapUtil.decodeSampledBitmapFromResource(context.getResources(), continent.getImageResId(), 150, 150);
 
         ImageView ivContinent = (ImageView)item.findViewById(R.id.ivContinent);
-        ivContinent.setImageBitmap(bitmap);
+        ivContinent.setImageResource(continent.getImageResId());
 
 //        TextView tvContinentName = (TextView)item.findViewById(R.id.tvContinentName);
 //        tvContinentName.setText(continent.getName());

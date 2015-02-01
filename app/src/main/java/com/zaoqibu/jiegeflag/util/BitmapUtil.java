@@ -35,6 +35,7 @@ public class BitmapUtil
 	    // First decode with inJustDecodeBounds=true to check dimensions
 	    final BitmapFactory.Options options = new BitmapFactory.Options();
 	    options.inJustDecodeBounds = true;
+        options.inPreferredConfig = Bitmap.Config.ARGB_4444;
 	    BitmapFactory.decodeResource(res, resId, options);
 
 	    // Calculate inSampleSize

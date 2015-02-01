@@ -1,9 +1,12 @@
 package com.zaoqibu.jiegeflag;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.zaoqibu.jiegeflag.domain.Continent;
@@ -27,6 +30,15 @@ public class FlagThumbnailDisplayActivity extends ActionBarActivity {
         GridView gvFlagThumbnail = (GridView)findViewById(R.id.gvFlagThumbnail);
         gvFlagThumbnail.setNumColumns(gridViewUtil.getColumnNumber(this));
         gvFlagThumbnail.setAdapter(new FlagThumbnailItemAdapter(this, gridViewUtil.calcItemWidth(this), continent));
+        gvFlagThumbnail.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(FlagThumbnailDisplayActivity.this, FlagActivity.class);
+                intent.putExtra(FlagActivity.ARG_CONTINENT, continent);
+                intent.putExtra(FlagActivity.ARG_POSITION, position);
+                startActivity(intent);
+            }
+        });
     }
 
 
