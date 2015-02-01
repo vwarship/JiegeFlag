@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.zaoqibu.jiegeflag.domain.Continent;
 import com.zaoqibu.jiegeflag.util.BitmapUtil;
@@ -53,8 +54,11 @@ public class FlagThumbnailItemAdapter extends BaseAdapter {
         }
 
         ImageView ivFlagThumbnail = (ImageView)view.findViewById(R.id.ivFlagThumbnail);
-        Bitmap bitmap = BitmapUtil.decodeSampledBitmapFromResource(context.getResources(), continent.getCountryByIndex(position).getFlagResId(), 150, 150);
+        Bitmap bitmap = BitmapUtil.decodeSampledBitmapFromResource(context.getResources(), continent.getCountryByIndex(position).getFlagResId(), 120, 120);
         ivFlagThumbnail.setImageBitmap(bitmap);
+
+        TextView tvFlagName = (TextView)view.findViewById(R.id.tvFlagName);
+        tvFlagName.setText("中国");
 
         return view;
     }

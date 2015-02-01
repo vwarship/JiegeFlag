@@ -11,10 +11,9 @@
         android:layout_height="match_parent"
         android:horizontalSpacing="8dp"
         android:verticalSpacing="8dp"
-        android:numColumns="auto_fit"
         android:gravity="center"
         android:stretchMode="columnWidth"
-        android:background="#0392cf">
+        android:numColumns="3">
     </GridView>
 
 </RelativeLayout>
