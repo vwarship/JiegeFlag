@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.widget.GridView;
 
 import com.zaoqibu.jiegeflag.domain.Continent;
+import com.zaoqibu.jiegeflag.util.GridViewUtil;
 
 
 public class FlagThumbnailDisplayActivity extends ActionBarActivity {
@@ -21,8 +22,11 @@ public class FlagThumbnailDisplayActivity extends ActionBarActivity {
 
         continent = (Continent)getIntent().getSerializableExtra(ARG_CONTINENT);
 
+        GridViewUtil gridViewUtil = new GridViewUtil(3, 5);
+
         GridView gvFlagThumbnail = (GridView)findViewById(R.id.gvFlagThumbnail);
-        gvFlagThumbnail.setAdapter(new FlagThumbnailItemAdapter(this, continent));
+        gvFlagThumbnail.setNumColumns(gridViewUtil.getColumnNumber(this));
+        gvFlagThumbnail.setAdapter(new FlagThumbnailItemAdapter(this, gridViewUtil.calcItemWidth(this), continent));
     }
 
 

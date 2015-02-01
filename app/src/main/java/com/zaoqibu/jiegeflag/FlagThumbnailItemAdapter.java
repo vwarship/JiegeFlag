@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.zaoqibu.jiegeflag.domain.Continent;
 import com.zaoqibu.jiegeflag.util.BitmapUtil;
@@ -18,10 +17,12 @@ import com.zaoqibu.jiegeflag.util.BitmapUtil;
  */
 public class FlagThumbnailItemAdapter extends BaseAdapter {
     private Context context;
+    private int gridItemWidth;
     private Continent continent;
 
-    public FlagThumbnailItemAdapter(Context context, Continent continent) {
+    public FlagThumbnailItemAdapter(Context context, int gridItemWidth, Continent continent) {
         this.context = context;
+        this.gridItemWidth = gridItemWidth;
         this.continent = continent;
     }
 
@@ -47,18 +48,18 @@ public class FlagThumbnailItemAdapter extends BaseAdapter {
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(context);
             view = inflater.inflate(R.layout.gridview_item_flag_thumbnail, parent, false);
-            view.setLayoutParams(new GridView.LayoutParams(200, 200));
+            view.setLayoutParams(new GridView.LayoutParams(gridItemWidth, gridItemWidth));
         }
         else {
             view = convertView;
         }
 
         ImageView ivFlagThumbnail = (ImageView)view.findViewById(R.id.ivFlagThumbnail);
-        Bitmap bitmap = BitmapUtil.decodeSampledBitmapFromResource(context.getResources(), continent.getCountryByIndex(position).getFlagResId(), 120, 120);
+        Bitmap bitmap = BitmapUtil.decodeSampledBitmapFromResource(context.getResources(), continent.getCountryByIndex(position).getFlagResId(), 100, 100);
         ivFlagThumbnail.setImageBitmap(bitmap);
 
-        TextView tvFlagName = (TextView)view.findViewById(R.id.tvFlagName);
-        tvFlagName.setText("中国");
+//        TextView tvFlagName = (TextView)view.findViewById(R.id.tvFlagName);
+//        tvFlagName.setText();
 
         return view;
     }

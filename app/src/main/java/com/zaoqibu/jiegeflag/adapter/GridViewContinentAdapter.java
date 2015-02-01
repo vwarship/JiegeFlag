@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.zaoqibu.jiegeflag.R;
 import com.zaoqibu.jiegeflag.domain.Continent;
@@ -66,8 +65,8 @@ public class GridViewContinentAdapter extends BaseAdapter
         ImageView ivContinent = (ImageView)item.findViewById(R.id.ivContinent);
         ivContinent.setImageBitmap(bitmap);
 
-        TextView tvContinentName = (TextView)item.findViewById(R.id.tvContinentName);
-        tvContinentName.setText(continent.getName());
+//        TextView tvContinentName = (TextView)item.findViewById(R.id.tvContinentName);
+//        tvContinentName.setText(continent.getName());
 
         return item;
 	}
