@@ -18,6 +18,9 @@ public class FlagThumbnailDisplayActivity extends ActionBarActivity {
 
     private Continent continent;
 
+    private GridView gvFlagThumbnail;
+    private FlagThumbnailItemAdapter flagThumbnailItemAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,9 +30,11 @@ public class FlagThumbnailDisplayActivity extends ActionBarActivity {
 
         GridViewUtil gridViewUtil = new GridViewUtil(3, 5);
 
-        GridView gvFlagThumbnail = (GridView)findViewById(R.id.gvFlagThumbnail);
+        flagThumbnailItemAdapter = new FlagThumbnailItemAdapter(this, gridViewUtil.calcItemWidth(this), continent);
+
+        gvFlagThumbnail = (GridView)findViewById(R.id.gvFlagThumbnail);
         gvFlagThumbnail.setNumColumns(gridViewUtil.getColumnNumber(this));
-        gvFlagThumbnail.setAdapter(new FlagThumbnailItemAdapter(this, gridViewUtil.calcItemWidth(this), continent));
+        gvFlagThumbnail.setAdapter(flagThumbnailItemAdapter);
         gvFlagThumbnail.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -41,6 +46,17 @@ public class FlagThumbnailDisplayActivity extends ActionBarActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        flagThumbnailItemAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        flagThumbnailItemAdapter.recycleBitmaps();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

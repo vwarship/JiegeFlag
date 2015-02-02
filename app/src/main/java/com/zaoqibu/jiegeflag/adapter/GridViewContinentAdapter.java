@@ -1,6 +1,8 @@
 package com.zaoqibu.jiegeflag.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +14,17 @@ import com.zaoqibu.jiegeflag.R;
 import com.zaoqibu.jiegeflag.domain.Continent;
 import com.zaoqibu.jiegeflag.domain.World;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class GridViewContinentAdapter extends BaseAdapter
 {
 	private Context context;
     private int gridItemWidth;
 
 	private World world;
-	
-	public GridViewContinentAdapter(Context context, int gridItemWidth, World world)
+
+    public GridViewContinentAdapter(Context context, int gridItemWidth, World world)
 	{
 		this.context = context;
         this.gridItemWidth = gridItemWidth;
@@ -59,13 +64,37 @@ public class GridViewContinentAdapter extends BaseAdapter
 
         Continent continent = world.getContinentByIndex(position);
 
+        final int key = continent.getImageResId();
+        if (!bitmaps.containsKey(key)) {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inPreferredConfig = Bitmap.Config.ARGB_4444;
+            Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), key, options);
+
+            bitmaps.put(key, bitmap);
+        }
+
         ImageView ivContinent = (ImageView)item.findViewById(R.id.ivContinent);
-        ivContinent.setImageResource(continent.getImageResId());
+        ivContinent.setImageBitmap(bitmaps.get(key));
+
+
+//        ImageView ivContinent = (ImageView)item.findViewById(R.id.ivContinent);
+//        ivContinent.setImageResource(continent.getImageResId());
 
 //        TextView tvContinentName = (TextView)item.findViewById(R.id.tvContinentName);
 //        tvContinentName.setText(continent.getName());
 
         return item;
 	}
+
+    private Map<Integer, Bitmap> bitmaps = new HashMap<Integer, Bitmap>();
+
+    public void recycleBitmaps() {
+        for (Map.Entry<Integer, Bitmap> entry : bitmaps.entrySet()) {
+            entry.getValue().recycle();
+            System.gc();
+        }
+
+        bitmaps.clear();
+    }
 
 }

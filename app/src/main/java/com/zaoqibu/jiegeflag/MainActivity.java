@@ -16,6 +16,9 @@ import com.zaoqibu.jiegeflag.util.GridViewUtil;
 public class MainActivity extends ActionBarActivity {
     private World world;
 
+    private GridView gridView;
+    private GridViewContinentAdapter continentAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,9 +28,11 @@ public class MainActivity extends ActionBarActivity {
 
         GridViewUtil gridViewUtil = new GridViewUtil(2, 3);
 
-        GridView gridView = (GridView) findViewById(R.id.grid_view_main);
+        continentAdapter = new GridViewContinentAdapter(this, gridViewUtil.calcItemWidth(this), world);
+
+        gridView = (GridView) findViewById(R.id.grid_view_main);
         gridView.setNumColumns(gridViewUtil.getColumnNumber(this));
-        gridView.setAdapter(new GridViewContinentAdapter(this, gridViewUtil.calcItemWidth(this), world));
+        gridView.setAdapter(continentAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
@@ -36,6 +41,18 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        continentAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        continentAdapter.recycleBitmaps();
     }
 
     @Override
