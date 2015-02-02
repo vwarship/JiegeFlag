@@ -12,7 +12,9 @@ import android.widget.ImageView;
 import com.zaoqibu.jiegeflag.domain.Continent;
 import com.zaoqibu.jiegeflag.util.BitmapUtil;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -57,19 +59,31 @@ public class FlagThumbnailItemAdapter extends BaseAdapter {
             view = convertView;
         }
 
-        final int key = view.hashCode();
+        GridView gridView = (GridView)parent;
+        int firstVisiblePos = gridView.getFirstVisiblePosition() - gridView.getNumColumns();
+        int lastVisiblePos = gridView.getLastVisiblePosition() + gridView.getNumColumns();
 
-        if (bitmaps.containsKey(key)) {
-            Bitmap bitmap = bitmaps.remove(key);
-            bitmap.recycle();
-            System.gc();
+        List<Integer> posList = new ArrayList<Integer>();
+        for (Map.Entry<Integer, Bitmap> entry : bitmaps.entrySet()) {
+            int pos = entry.getKey();
+            if (pos < firstVisiblePos || pos > lastVisiblePos) {
+                Bitmap bitmap = entry.getValue();
+                bitmap.recycle();
+                System.gc();
+
+                posList.add(pos);
+            }
+        }
+
+        for (Integer pos : posList) {
+            bitmaps.remove(pos);
         }
 
         ImageView ivFlagThumbnail = (ImageView)view.findViewById(R.id.ivFlagThumbnail);
         Bitmap bitmap = BitmapUtil.decodeSampledBitmapFromResource(context.getResources(), continent.getCountryByIndex(position).getFlagResId(), 150, 150);
         ivFlagThumbnail.setImageBitmap(bitmap);
 
-        bitmaps.put(key, bitmap);
+        bitmaps.put(position, bitmap);
 
 //        TextView tvFlagName = (TextView)view.findViewById(R.id.tvFlagName);
 //        tvFlagName.setText();
