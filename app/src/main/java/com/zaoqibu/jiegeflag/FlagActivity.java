@@ -3,10 +3,10 @@ package com.zaoqibu.jiegeflag;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +17,7 @@ import com.zaoqibu.jiegeflag.domain.Country;
 import com.zaoqibu.jiegeflag.util.BitmapUtil;
 
 
-public class FlagActivity extends FragmentActivity {
+public class FlagActivity extends ActionBarActivity {
     public static final String ARG_CONTINENT = "continent";
     public static final String ARG_POSITION = "position";
 
