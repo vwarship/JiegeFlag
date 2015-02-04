@@ -12,7 +12,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zaoqibu.jiegeflag.R;
+import com.umeng.analytics.MobclickAgent;
 import com.zaoqibu.jiegeflag.domain.Continent;
 import com.zaoqibu.jiegeflag.domain.World;
 
@@ -82,6 +82,10 @@ public class GridViewContinentAdapter extends BaseAdapter
         ivPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Map<String,String> map = new HashMap<String,String>();
+                map.put("continent", continent.getName());
+                MobclickAgent.onEvent(context, "continent_play_sound");
+
                 MediaPlayer player =  MediaPlayer.create(context, continent.getSoundResId());
                 player.start();
             }

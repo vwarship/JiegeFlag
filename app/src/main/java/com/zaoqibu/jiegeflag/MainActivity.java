@@ -10,9 +10,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.umeng.analytics.MobclickAgent;
+import com.zaoqibu.jiegeflag.domain.Continent;
 import com.zaoqibu.jiegeflag.domain.World;
 import com.zaoqibu.jiegeflag.util.FlagsXmlParser;
 import com.zaoqibu.jiegeflag.util.GridViewUtil;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends ActionBarActivity {
     private World world;
@@ -39,11 +44,20 @@ public class MainActivity extends ActionBarActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                Continent continent = world.getContinentByIndex(position);
+
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("continent", continent.getName());
+                MobclickAgent.onEvent(MainActivity.this, "continent", map);
+
                 Intent intent = new Intent(MainActivity.this, FlagThumbnailDisplayActivity.class);
-                intent.putExtra(FlagThumbnailDisplayActivity.ARG_CONTINENT, world.getContinentByIndex(position));
+                intent.putExtra(FlagThumbnailDisplayActivity.ARG_CONTINENT, continent);
                 startActivity(intent);
             }
         });
+
+        MobclickAgent.setDebugMode(false);
+        MobclickAgent.updateOnlineConfig(this);
     }
 
     @Override
@@ -56,6 +70,15 @@ public class MainActivity extends ActionBarActivity {
     protected void onStop() {
         super.onStop();
         continentAdapter.recycleBitmaps();
+    }
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override
@@ -73,10 +96,7 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        else if (id == R.id.action_about) {
+        if (id == R.id.action_about) {
             Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
             return true;

@@ -4,25 +4,26 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
+import com.umeng.analytics.MobclickAgent;
+
 public class AboutActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        getSupportActionBar().setTitle(R.string.action_about);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//        MobclickAgent.onEvent(this, "about");
+        MobclickAgent.onEvent(this, "about");
     }
 
     public void onResume() {
         super.onResume();
-//        MobclickAgent.onResume(this);
+        MobclickAgent.onResume(this);
     }
     public void onPause() {
         super.onPause();
-//        MobclickAgent.onPause(this);
+        MobclickAgent.onPause(this);
     }
 
     @Override

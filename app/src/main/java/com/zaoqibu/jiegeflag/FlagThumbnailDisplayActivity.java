@@ -9,8 +9,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.umeng.analytics.MobclickAgent;
 import com.zaoqibu.jiegeflag.domain.Continent;
 import com.zaoqibu.jiegeflag.util.GridViewUtil;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class FlagThumbnailDisplayActivity extends ActionBarActivity {
@@ -41,6 +45,11 @@ public class FlagThumbnailDisplayActivity extends ActionBarActivity {
         gvFlagThumbnail.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("continent", continent.getName());
+                map.put("flag", continent.getCountryByIndex(position).getName());
+                MobclickAgent.onEvent(FlagThumbnailDisplayActivity.this, "user_selected_flag", map);
+
                 Intent intent = new Intent(FlagThumbnailDisplayActivity.this, FlagActivity.class);
                 intent.putExtra(FlagActivity.ARG_CONTINENT, continent);
                 intent.putExtra(FlagActivity.ARG_POSITION, position);
@@ -59,6 +68,15 @@ public class FlagThumbnailDisplayActivity extends ActionBarActivity {
     protected void onStop() {
         super.onStop();
         flagThumbnailItemAdapter.recycleBitmaps();
+    }
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override
