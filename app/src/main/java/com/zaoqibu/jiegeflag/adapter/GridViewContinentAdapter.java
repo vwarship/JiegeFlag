@@ -49,18 +49,15 @@ public class GridViewContinentAdapter extends BaseAdapter
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) 
-	{
+	public View getView(int position, View convertView, ViewGroup parent) {
         View item = null;
 
-        if (convertView == null)
-        {
+        if (convertView == null) {
             LayoutInflater layoutInflater = LayoutInflater.from(context);
             item = layoutInflater.inflate(R.layout.gridview_item_continent, parent, false);
             item.setLayoutParams(new GridView.LayoutParams(gridItemWidth, gridItemWidth));
         }
-        else
-        {
+        else {
             item = convertView;
         }
 
@@ -77,10 +74,6 @@ public class GridViewContinentAdapter extends BaseAdapter
 
         ImageView ivContinent = (ImageView)item.findViewById(R.id.ivContinent);
         ivContinent.setImageBitmap(bitmaps.get(key));
-
-
-//        ImageView ivContinent = (ImageView)item.findViewById(R.id.ivContinent);
-//        ivContinent.setImageResource(continent.getImageResId());
 
         TextView tvContinentName = (TextView)item.findViewById(R.id.tvContinentName);
         tvContinentName.setText(continent.getName());

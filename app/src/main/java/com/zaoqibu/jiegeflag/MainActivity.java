@@ -27,13 +27,9 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        world  = new World();
         XmlResourceParser xmlResourceParser = getResources().getXml(R.xml.flags);
         FlagsXmlParser parser = new FlagsXmlParser();
         world = parser.parse(xmlResourceParser);
-        Log.i("test", ">>"+world.getContinentCount());
-        Log.i("test", ">>1"+world.getContinentByIndex(0).getImageResId());
-        Log.i("test", ">>2"+world.getContinentByIndex(1).getImageResId());
 
         GridViewUtil gridViewUtil = new GridViewUtil(2, 3);
 
