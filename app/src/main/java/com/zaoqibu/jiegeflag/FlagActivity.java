@@ -3,7 +3,6 @@ package com.zaoqibu.jiegeflag;
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +19,7 @@ import android.widget.TextView;
 import com.zaoqibu.jiegeflag.domain.Continent;
 import com.zaoqibu.jiegeflag.domain.Country;
 import com.zaoqibu.jiegeflag.util.BitmapUtil;
+import com.zaoqibu.jiegeflag.util.MediaPlayerSingleton;
 
 
 public class FlagActivity extends ActionBarActivity {
@@ -46,7 +46,9 @@ public class FlagActivity extends ActionBarActivity {
         flagPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-                getSupportActionBar().setTitle(continent.getCountryByIndex(position).getName());
+                Country country = continent.getCountryByIndex(position);
+                getSupportActionBar().setTitle(country.getName());
+                MediaPlayerSingleton.getInstance().play(FlagActivity.this.getBaseContext(), country.getSoundResId());
             }
         });
 
@@ -119,8 +121,7 @@ public class FlagActivity extends ActionBarActivity {
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MediaPlayer player =  MediaPlayer.create(FlagFragment.this.getActivity(), country.getSoundResId());
-                    player.start();
+                    MediaPlayerSingleton.getInstance().play(getActivity(), country.getSoundResId());
                 }
             });
 
