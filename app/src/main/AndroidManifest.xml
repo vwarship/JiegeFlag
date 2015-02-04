@@ -28,6 +28,10 @@
             android:name=".FlagActivity"
             android:label="@string/title_activity_flag" >
         </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="" >
+        </activity>
     </application>
 
 </manifest>

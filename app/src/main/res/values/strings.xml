@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Jiege Flag</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_flag_thumbnail_display">FlagThumbnailDisplayActivity</string>
-    <string name="title_activity_flag">FlagActivity</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_flag_thumbnail_display"></string>
+    <string name="title_activity_flag"></string>
+
+    <string name="app_name">杰哥国旗</string>
+    <string name="action_settings">设置</string>
+
+    <!-- 菜单 -->
+    <string name="action_about">关于</string>
+
+    <!-- 国旗的属性 -->
+    <string name="use_date">使用日期</string>
+    <string name="aspect_ratio">纵横比例</string>
+    <string name="design">设计</string>
+    <string name="meaning">含义</string>
 
 </resources>

@@ -4,11 +4,6 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!--ActionBar的颜色-->
         <item name="colorPrimary">#03a9f5</item>
-        <!--状态栏的颜色 （使用support包时似乎无效。）-->
-        <item name="colorPrimaryDark">#00bad1</item>
-
-        <!--ActionBar的样式-->
-        <item name="actionBarStyle">@style/AppTheme.ActionBarStyle</item>
     </style>
 
     <style name="AppTheme.ActionBarStyle" parent="Widget.AppCompat.ActionBar.Solid">
