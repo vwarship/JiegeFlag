@@ -5,10 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 
-import com.zaoqibu.jiegeflag.R;
-
-import java.lang.reflect.Field;
-
 public class ResourceBitmapHelper
 {
 	private Resources mResources;
@@ -26,21 +22,9 @@ public class ResourceBitmapHelper
 	
 	public BitmapDrawable getDrawableFromResourceName(String resourceName, int containerWidth)
 	{
-		return getDrawableFromResourceId(getResourcesDrawableId(resourceName), containerWidth);
+		return getDrawableFromResourceId(ResourcesUtil.getDrawableId(resourceName), containerWidth);
 	}
-	
-	static public int getResourcesDrawableId(String name)
-	{
-		try {
-			Field field = R.drawable.class.getField(name);
-			return Integer.parseInt(field.get(null).toString());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return 0;
-	}
-	
+
 	public BitmapDrawable getDrawableFromResourceId(int resourceId, int containerWidth)
 	{
 		BitmapFactory.Options options = new BitmapFactory.Options();

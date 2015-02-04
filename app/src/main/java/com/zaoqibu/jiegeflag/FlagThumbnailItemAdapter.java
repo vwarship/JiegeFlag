@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.zaoqibu.jiegeflag.domain.Continent;
+import com.zaoqibu.jiegeflag.domain.Country;
 import com.zaoqibu.jiegeflag.util.BitmapUtil;
 
 import java.util.ArrayList;
@@ -79,14 +81,16 @@ public class FlagThumbnailItemAdapter extends BaseAdapter {
             bitmaps.remove(pos);
         }
 
+        Country country = continent.getCountryByIndex(position);
+
         ImageView ivFlagThumbnail = (ImageView)view.findViewById(R.id.ivFlagThumbnail);
-        Bitmap bitmap = BitmapUtil.decodeSampledBitmapFromResource(context.getResources(), continent.getCountryByIndex(position).getFlagResId(), 150, 150);
+        Bitmap bitmap = BitmapUtil.decodeSampledBitmapFromResource(context.getResources(), country.getFlagResId(), 150, 150);
         ivFlagThumbnail.setImageBitmap(bitmap);
 
         bitmaps.put(position, bitmap);
 
-//        TextView tvFlagName = (TextView)view.findViewById(R.id.tvFlagName);
-//        tvFlagName.setText();
+        TextView tvFlagName = (TextView)view.findViewById(R.id.tvFlagName);
+        tvFlagName.setText(country.getName());
 
         return view;
     }

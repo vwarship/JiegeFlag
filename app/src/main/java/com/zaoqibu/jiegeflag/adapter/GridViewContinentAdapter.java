@@ -3,12 +3,14 @@ package com.zaoqibu.jiegeflag.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.zaoqibu.jiegeflag.R;
 import com.zaoqibu.jiegeflag.domain.Continent;
@@ -62,7 +64,7 @@ public class GridViewContinentAdapter extends BaseAdapter
             item = convertView;
         }
 
-        Continent continent = world.getContinentByIndex(position);
+        final Continent continent = world.getContinentByIndex(position);
 
         final int key = continent.getImageResId();
         if (!bitmaps.containsKey(key)) {
@@ -80,8 +82,17 @@ public class GridViewContinentAdapter extends BaseAdapter
 //        ImageView ivContinent = (ImageView)item.findViewById(R.id.ivContinent);
 //        ivContinent.setImageResource(continent.getImageResId());
 
-//        TextView tvContinentName = (TextView)item.findViewById(R.id.tvContinentName);
-//        tvContinentName.setText(continent.getName());
+        TextView tvContinentName = (TextView)item.findViewById(R.id.tvContinentName);
+        tvContinentName.setText(continent.getName());
+
+        ImageView ivPlay = (ImageView)item.findViewById(R.id.ivPlay);
+        ivPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MediaPlayer player =  MediaPlayer.create(context, continent.getSoundResId());
+                player.start();
+            }
+        });
 
         return item;
 	}

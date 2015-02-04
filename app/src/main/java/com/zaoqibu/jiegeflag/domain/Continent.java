@@ -8,15 +8,17 @@ public class Continent implements Serializable
 {
 	private static final long serialVersionUID = -2226232452240725111L;
 	
-	private int imageResId;
 	private String name;
-	
+    private int imageResId;
+    private int soundResId;
+
 	private List<Country> countries = new ArrayList<Country>();
 	
-	public Continent(int imageResId, String name)
+	public Continent(String name, int imageResId, int soundResId)
 	{
-		this.imageResId = imageResId;
 		this.name = name;
+        this.imageResId = imageResId;
+        this.soundResId = soundResId;
 	}
 
 	public void AddCountry(Country country)
@@ -34,21 +36,16 @@ public class Continent implements Serializable
 		return countries.get(index);
 	}
 
-	public int getImageResId() {
-		return imageResId;
-	}
-
-	public void setImageResId(int imageResId) {
-		this.imageResId = imageResId;
-	}
-
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	
+    public int getImageResId() {
+        return imageResId;
+    }
+
+    public int getSoundResId() {
+        return soundResId;
+    }
+
 }

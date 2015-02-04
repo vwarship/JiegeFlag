@@ -28,6 +28,9 @@ public class FlagThumbnailDisplayActivity extends ActionBarActivity {
 
         continent = (Continent)getIntent().getSerializableExtra(ARG_CONTINENT);
 
+        getSupportActionBar().setTitle(continent.getName());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         GridViewUtil gridViewUtil = new GridViewUtil(3, 5);
 
         flagThumbnailItemAdapter = new FlagThumbnailItemAdapter(this, gridViewUtil.calcItemWidth(this), continent);
@@ -75,6 +78,9 @@ public class FlagThumbnailDisplayActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+        else if (id == android.R.id.home) {
+            onBackPressed();
         }
 
         return super.onOptionsItemSelected(item);

@@ -1,8 +1,10 @@
 package com.zaoqibu.jiegeflag;
 
 import android.content.Intent;
+import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.GridView;
 
 import com.zaoqibu.jiegeflag.adapter.GridViewContinentAdapter;
 import com.zaoqibu.jiegeflag.domain.World;
+import com.zaoqibu.jiegeflag.util.FlagsXmlParser;
 import com.zaoqibu.jiegeflag.util.GridViewUtil;
 
 public class MainActivity extends ActionBarActivity {
@@ -24,7 +27,13 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        world  = new World();
+//        world  = new World();
+        XmlResourceParser xmlResourceParser = getResources().getXml(R.xml.flags);
+        FlagsXmlParser parser = new FlagsXmlParser();
+        world = parser.parse(xmlResourceParser);
+        Log.i("test", ">>"+world.getContinentCount());
+        Log.i("test", ">>1"+world.getContinentByIndex(0).getImageResId());
+        Log.i("test", ">>2"+world.getContinentByIndex(1).getImageResId());
 
         GridViewUtil gridViewUtil = new GridViewUtil(2, 3);
 
