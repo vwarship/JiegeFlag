@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.zaoqibu.jiegeflag.adapter.GridViewContinentAdapter;
 import com.zaoqibu.jiegeflag.domain.World;
 import com.zaoqibu.jiegeflag.util.FlagsXmlParser;
 import com.zaoqibu.jiegeflag.util.GridViewUtil;

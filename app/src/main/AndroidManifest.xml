@@ -17,10 +17,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FullScreenViewActivity"
-            android:screenOrientation="landscape" >
-        </activity>
-        <activity
             android:name=".FlagThumbnailDisplayActivity"
             android:label="@string/title_activity_flag_thumbnail_display" >
         </activity>
@@ -30,7 +26,7 @@
         </activity>
         <activity
             android:name=".AboutActivity"
-            android:label="" >
+            android:label="@string/action_about" >
         </activity>
     </application>
 

@@ -26,9 +26,6 @@ public class FlagActivity extends ActionBarActivity {
     public static final String ARG_CONTINENT = "continent";
     public static final String ARG_POSITION = "position";
 
-    private Continent continent;
-    private int position;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -37,8 +34,8 @@ public class FlagActivity extends ActionBarActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        continent = (Continent)getIntent().getExtras().get(ARG_CONTINENT);
-        position = getIntent().getExtras().getInt(ARG_POSITION);
+        final Continent continent = (Continent)getIntent().getExtras().get(ARG_CONTINENT);
+        final int position = getIntent().getExtras().getInt(ARG_POSITION);
 
         ViewPager flagPager = (ViewPager)findViewById(R.id.flagPager);
         flagPager.setAdapter(new FlagPagerAdapter(getSupportFragmentManager(), continent));
@@ -46,14 +43,21 @@ public class FlagActivity extends ActionBarActivity {
         flagPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-                Country country = continent.getCountryByIndex(position);
-                getSupportActionBar().setTitle(country.getName());
-                MediaPlayerSingleton.getInstance().play(FlagActivity.this.getBaseContext(), country.getSoundResId());
+                onPageChange(continent, position);
             }
         });
 
-        getSupportActionBar().setTitle(continent.getCountryByIndex(position).getName());
         flagPager.setCurrentItem(position);
+
+        if (position == 0) {
+            onPageChange(continent, position);
+        }
+    }
+
+    private void onPageChange(Continent continent, int position) {
+        Country country = continent.getCountryByIndex(position);
+        getSupportActionBar().setTitle(country.getName());
+        MediaPlayerSingleton.getInstance().play(getBaseContext(), country.getSoundResId());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.zaoqibu.jiegeflag.adapter;
+package com.zaoqibu.jiegeflag;
 
 import android.content.Context;
 import android.graphics.Bitmap;
