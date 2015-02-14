@@ -70,8 +70,8 @@ public class FlagThumbnailItemAdapter extends BaseAdapter {
             int pos = entry.getKey();
             if (pos < firstVisiblePos || pos > lastVisiblePos) {
                 Bitmap bitmap = entry.getValue();
-                bitmap.recycle();
-                System.gc();
+//                bitmap.recycle();
+//                System.gc();
 
                 posList.add(pos);
             }
@@ -84,7 +84,7 @@ public class FlagThumbnailItemAdapter extends BaseAdapter {
         Country country = continent.getCountryByIndex(position);
 
         ImageView ivFlagThumbnail = (ImageView)view.findViewById(R.id.ivFlagThumbnail);
-        Bitmap bitmap = BitmapUtil.decodeSampledBitmapFromResource(context.getResources(), country.getFlagResId(), 150, 150);
+        Bitmap bitmap = BitmapUtil.decodeSampledBitmapFromResource(context.getResources(), country.getFlagResId(), 120, 120);
         ivFlagThumbnail.setImageBitmap(bitmap);
 
         bitmaps.put(position, bitmap);
@@ -99,8 +99,8 @@ public class FlagThumbnailItemAdapter extends BaseAdapter {
 
     public void recycleBitmaps() {
         for (Map.Entry<Integer, Bitmap> entry : bitmaps.entrySet()) {
-            entry.getValue().recycle();
-            System.gc();
+//            entry.getValue().recycle();
+//            System.gc();
         }
 
         bitmaps.clear();

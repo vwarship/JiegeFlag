@@ -119,7 +119,7 @@ public class FlagActivity extends ActionBarActivity {
             View rootView = inflater.inflate(R.layout.activity_flag, container, false);
 
             ImageView imageView = (ImageView)rootView.findViewById(R.id.ivFlag);
-            bitmap = BitmapUtil.decodeSampledBitmapFromResource(this.getResources(), country.getFlagResId(), 400, 400);
+            bitmap = BitmapUtil.decodeSampledBitmapFromResource(this.getResources(), country.getFlagResId(), 300, 300);
             imageView.setImageBitmap(bitmap);
 
             imageView.setOnClickListener(new View.OnClickListener() {

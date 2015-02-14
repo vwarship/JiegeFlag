@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp">
+    android:padding="@dimen/activity_margin">
 
     <GridView android:id="@+id/grid_view_main"
         android:layout_width="match_parent"
@@ -14,4 +14,4 @@
         android:stretchMode="columnWidth">
     </GridView>
 
- </RelativeLayout>
+</RelativeLayout>
