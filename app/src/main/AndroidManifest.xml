@@ -39,7 +39,7 @@
             android:value="54d253fdfd98c5472800037f" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="umeng" />
+            android:value="google_play" />
     </application>
 
 </manifest>
