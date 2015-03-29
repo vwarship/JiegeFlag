@@ -1,7 +1,6 @@
 package com.zaoqibu.jiegeflag;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +11,6 @@ import android.widget.TextView;
 
 import com.zaoqibu.jiegeflag.domain.Continent;
 import com.zaoqibu.jiegeflag.domain.Country;
-import com.zaoqibu.jiegeflag.util.BitmapUtil;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by vwarship on 2015/2/1.
@@ -61,33 +54,35 @@ public class FlagThumbnailItemAdapter extends BaseAdapter {
             view = convertView;
         }
 
-        GridView gridView = (GridView)parent;
-        int firstVisiblePos = gridView.getFirstVisiblePosition() - gridView.getNumColumns();
-        int lastVisiblePos = gridView.getLastVisiblePosition() + gridView.getNumColumns();
-
-        List<Integer> posList = new ArrayList<Integer>();
-        for (Map.Entry<Integer, Bitmap> entry : bitmaps.entrySet()) {
-            int pos = entry.getKey();
-            if (pos < firstVisiblePos || pos > lastVisiblePos) {
-                Bitmap bitmap = entry.getValue();
-//                bitmap.recycle();
-//                System.gc();
-
-                posList.add(pos);
-            }
-        }
-
-        for (Integer pos : posList) {
-            bitmaps.remove(pos);
-        }
+//        GridView gridView = (GridView)parent;
+//        int firstVisiblePos = gridView.getFirstVisiblePosition() - gridView.getNumColumns();
+//        int lastVisiblePos = gridView.getLastVisiblePosition() + gridView.getNumColumns();
+//
+//        List<Integer> posList = new ArrayList<Integer>();
+//        for (Map.Entry<Integer, Bitmap> entry : bitmaps.entrySet()) {
+//            int pos = entry.getKey();
+//            if (pos < firstVisiblePos || pos > lastVisiblePos) {
+//                Bitmap bitmap = entry.getValue();
+////                bitmap.recycle();
+////                System.gc();
+//
+//                posList.add(pos);
+//            }
+//        }
+//
+//        for (Integer pos : posList) {
+//            bitmaps.remove(pos);
+//        }
 
         Country country = continent.getCountryByIndex(position);
 
+//        ImageView ivFlagThumbnail = (ImageView)view.findViewById(R.id.ivFlagThumbnail);
+//        Bitmap bitmap = BitmapUtil.decodeSampledBitmapFromResource(context.getResources(), country.getFlagResId(), 120, 120);
+//        ivFlagThumbnail.setImageBitmap(bitmap);
         ImageView ivFlagThumbnail = (ImageView)view.findViewById(R.id.ivFlagThumbnail);
-        Bitmap bitmap = BitmapUtil.decodeSampledBitmapFromResource(context.getResources(), country.getFlagResId(), 120, 120);
-        ivFlagThumbnail.setImageBitmap(bitmap);
+        ivFlagThumbnail.setImageResource(country.getThumbnailResId());
 
-        bitmaps.put(position, bitmap);
+//        bitmaps.put(position, bitmap);
 
         TextView tvFlagName = (TextView)view.findViewById(R.id.tvFlagName);
         tvFlagName.setText(country.getName());
@@ -95,15 +90,15 @@ public class FlagThumbnailItemAdapter extends BaseAdapter {
         return view;
     }
 
-    private Map<Integer, Bitmap> bitmaps = new HashMap<Integer, Bitmap>();
+//    private Map<Integer, Bitmap> bitmaps = new HashMap<Integer, Bitmap>();
 
     public void recycleBitmaps() {
-        for (Map.Entry<Integer, Bitmap> entry : bitmaps.entrySet()) {
-//            entry.getValue().recycle();
-//            System.gc();
-        }
-
-        bitmaps.clear();
+//        for (Map.Entry<Integer, Bitmap> entry : bitmaps.entrySet()) {
+////            entry.getValue().recycle();
+////            System.gc();
+//        }
+//
+//        bitmaps.clear();
     }
 
 }

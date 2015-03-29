@@ -13,11 +13,12 @@ public class Country implements Serializable
     private String design;
     private String meaning;
 
-	private int flagResId;
+    private int flagResId;
+    private int thumbnailResId;
 	private int soundResId;
 
 	public Country(String id, String name, String useDate, String aspectRatio, String design, String meaning,
-                   int flagResId, int soundResId) {
+                   int flagResId, int thumbnailResId, int soundResId) {
         this.id = id;
         this.name = name;
         this.useDate = useDate;
@@ -26,6 +27,7 @@ public class Country implements Serializable
         this.meaning = meaning;
 
 		this.flagResId = flagResId;
+        this.thumbnailResId = thumbnailResId;
 		this.soundResId = soundResId;
 	}
 
@@ -56,8 +58,12 @@ public class Country implements Serializable
     public int getFlagResId() {
 		return flagResId;
 	}
-	
-	public int getSoundResId() {
+
+    public int getThumbnailResId() {
+        return thumbnailResId;
+    }
+
+    public int getSoundResId() {
 		return soundResId;
 	}
 	

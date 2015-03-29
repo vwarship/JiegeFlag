@@ -10,14 +10,16 @@ public class Continent implements Serializable
 	
 	private String name;
     private int imageResId;
+    private int thumbnailResId;
     private int soundResId;
 
 	private List<Country> countries = new ArrayList<Country>();
 	
-	public Continent(String name, int imageResId, int soundResId)
+	public Continent(String name, int imageResId, int thumbnailResId, int soundResId)
 	{
 		this.name = name;
         this.imageResId = imageResId;
+        this.thumbnailResId = thumbnailResId;
         this.soundResId = soundResId;
 	}
 
@@ -42,6 +44,10 @@ public class Continent implements Serializable
 
     public int getImageResId() {
         return imageResId;
+    }
+
+    public int getThumbnailResId() {
+        return thumbnailResId;
     }
 
     public int getSoundResId() {

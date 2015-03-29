@@ -28,7 +28,9 @@ public class FlagsXmlParser {
                         String id = parser.getAttributeValue(null, "id");
                         String name = parser.getAttributeValue(null, "name");
 
-                        continent = new Continent(name, ResourcesUtil.getDrawableId(id), ResourcesUtil.getRawId(id));
+                        continent = new Continent(name, ResourcesUtil.getDrawableId(id),
+                                ResourcesUtil.getDrawableId(id), //ResourcesUtil.getRawId(id),
+                                ResourcesUtil.getRawId(id));
                         world.addContinent(continent);
                     } else if (parser.getName().equals("country")) {
                         String id = parser.getAttributeValue(null, "id");
@@ -39,7 +41,9 @@ public class FlagsXmlParser {
                         String meaning = parser.getAttributeValue(null, "meaning");
 
                         Country country = new Country(id, name, useDate, aspectRatio, design, meaning,
-                                ResourcesUtil.getDrawableId(id), ResourcesUtil.getRawId(id));
+                                ResourcesUtil.getDrawableId(id),
+                                ResourcesUtil.getRawId("t_"+id),
+                                ResourcesUtil.getRawId(id));
                         continent.AddCountry(country);
                     }
                 }
