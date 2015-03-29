@@ -15,6 +15,8 @@ import java.io.IOException;
  * Created by vwarship on 2015/2/3.
  */
 public class FlagsXmlParser {
+    private final String thumbnailPrefix = "t_";
+
     public World parse(XmlResourceParser parser) {
         World world = new World();
 
@@ -42,7 +44,7 @@ public class FlagsXmlParser {
 
                         Country country = new Country(id, name, useDate, aspectRatio, design, meaning,
                                 ResourcesUtil.getDrawableId(id),
-                                ResourcesUtil.getRawId("t_"+id),
+                                ResourcesUtil.getRawId(thumbnailPrefix + id),
                                 ResourcesUtil.getRawId(id));
                         continent.AddCountry(country);
                     }
