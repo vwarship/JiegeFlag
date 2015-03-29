@@ -2,7 +2,6 @@ package com.zaoqibu.jiegeflag;
 
 import android.app.Activity;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -109,7 +108,6 @@ public class FlagActivity extends ActionBarActivity {
     public static class FlagFragment extends Fragment
     {
         public static final String ARG_COUNTRY = "country";
-        private Bitmap bitmap;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -117,9 +115,6 @@ public class FlagActivity extends ActionBarActivity {
 
             View rootView = inflater.inflate(R.layout.activity_flag, container, false);
 
-//            ImageView imageView = (ImageView)rootView.findViewById(R.id.ivFlag);
-//            bitmap = BitmapUtil.decodeSampledBitmapFromResource(this.getResources(), country.getFlagResId(), 300, 300);
-//            imageView.setImageBitmap(bitmap);
             ImageView imageView = (ImageView)rootView.findViewById(R.id.ivFlag);
             imageView.setImageResource(country.getFlagResId());
 
@@ -154,16 +149,6 @@ public class FlagActivity extends ActionBarActivity {
                 return true;
 
             return false;
-        }
-
-        @Override
-        public void onDestroyView() {
-            super.onDestroyView();
-
-            if (bitmap != null && !bitmap.isRecycled()) {
-                bitmap.recycle();
-                System.gc();
-            }
         }
     }
 

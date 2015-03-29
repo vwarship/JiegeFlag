@@ -2,7 +2,6 @@ package com.zaoqibu.jiegeflag;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -62,13 +61,11 @@ public class FlagThumbnailDisplayActivity extends ActionBarActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        flagThumbnailItemAdapter.notifyDataSetChanged();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        flagThumbnailItemAdapter.recycleBitmaps();
     }
 
     public void onResume() {

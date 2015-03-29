@@ -63,13 +63,11 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        continentAdapter.notifyDataSetChanged();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        continentAdapter.recycleBitmaps();
     }
 
     public void onResume() {

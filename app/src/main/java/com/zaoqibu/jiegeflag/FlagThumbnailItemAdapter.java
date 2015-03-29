@@ -54,51 +54,15 @@ public class FlagThumbnailItemAdapter extends BaseAdapter {
             view = convertView;
         }
 
-//        GridView gridView = (GridView)parent;
-//        int firstVisiblePos = gridView.getFirstVisiblePosition() - gridView.getNumColumns();
-//        int lastVisiblePos = gridView.getLastVisiblePosition() + gridView.getNumColumns();
-//
-//        List<Integer> posList = new ArrayList<Integer>();
-//        for (Map.Entry<Integer, Bitmap> entry : bitmaps.entrySet()) {
-//            int pos = entry.getKey();
-//            if (pos < firstVisiblePos || pos > lastVisiblePos) {
-//                Bitmap bitmap = entry.getValue();
-////                bitmap.recycle();
-////                System.gc();
-//
-//                posList.add(pos);
-//            }
-//        }
-//
-//        for (Integer pos : posList) {
-//            bitmaps.remove(pos);
-//        }
-
         Country country = continent.getCountryByIndex(position);
 
-//        ImageView ivFlagThumbnail = (ImageView)view.findViewById(R.id.ivFlagThumbnail);
-//        Bitmap bitmap = BitmapUtil.decodeSampledBitmapFromResource(context.getResources(), country.getFlagResId(), 120, 120);
-//        ivFlagThumbnail.setImageBitmap(bitmap);
         ImageView ivFlagThumbnail = (ImageView)view.findViewById(R.id.ivFlagThumbnail);
         ivFlagThumbnail.setImageResource(country.getThumbnailResId());
-
-//        bitmaps.put(position, bitmap);
 
         TextView tvFlagName = (TextView)view.findViewById(R.id.tvFlagName);
         tvFlagName.setText(country.getName());
 
         return view;
-    }
-
-//    private Map<Integer, Bitmap> bitmaps = new HashMap<Integer, Bitmap>();
-
-    public void recycleBitmaps() {
-//        for (Map.Entry<Integer, Bitmap> entry : bitmaps.entrySet()) {
-////            entry.getValue().recycle();
-////            System.gc();
-//        }
-//
-//        bitmaps.clear();
     }
 
 }
